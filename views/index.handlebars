@@ -1,0 +1,46 @@
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4" style="font-family: 'Alfa Slab One', cursive; letter-spacing: 4px; font-size: 80px;">Eat the Burger</h1>
+   <p> You know you waaaaannaa!</p>
+  </div>
+</div>
+<div class="row" style="background-color: lightgoldenrodyellow;">
+	<div class="container">
+	  <img src="/assets/img/burger1.png" alt="burger" class="burger1" style="width: 300px; height: 300px;"/>
+	
+        <div class="col-s6">
+            {{#each burgers}}
+              {{#unless this.devoured}}
+            <div>
+                <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+                    <button type="submit" class="burgerAvailable">{{this.burger_name}}</button>
+                </form> 
+            </div>    
+              {{/unless}}
+            {{/each}}
+        </div>    
+
+        <div class="burgers-after">
+            {{#each burgers}}
+              {{#if this.devoured}}
+              <div class="burgersEaten">
+                <div>
+                    {{this.burger_name}}
+                </div>
+              </div>
+              {{/if}}
+              {{/each}}
+        </div>
+    </div>
+</div>
+
+<div class="submit-row">
+    <div  class="col-s12">
+        <form action="/burgers" method="POST">
+            <input type="text" id="name" name="burger_name" placeholder="">
+            <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
+        <h4>Enter a burger you want to eat and hit submit</h4>
+    </div>
+</div>
